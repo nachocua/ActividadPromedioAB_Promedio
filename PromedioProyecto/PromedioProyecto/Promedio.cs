@@ -9,24 +9,27 @@ namespace PromedioProyecto
     internal class Promedio
     {
         private int cantidad;
-        private double promedio;
+        private double[] promedio = new double[100];
         public Promedio()
         {
             cantidad = 0;
-            promedio = 0.0;
         }
         public void AgregarValor(double value)
         {
-            promedio += value;
+            promedio[cantidad] = value;
             cantidad++;
         }
         public double CalcularPromedio() 
         {
-            if (cantidad == 0)
+            double acum = 0.0;
+            if (cantidad > 0)
             {
-                return 0;
+                for (int i = 0; i < cantidad; i++)
+                {
+                    acum += promedio[i];
+                }
             }
-            return promedio / cantidad;
+            return acum / cantidad;
         }
     }
 }
